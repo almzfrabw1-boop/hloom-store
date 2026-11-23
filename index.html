@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#7b2d49">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" href="icon-192.png">
+  <title>متجر حلوم | HLOOM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --burgundy: #7b2d49;
+      --burgundy-dark: #5f1f37;
+      --pink-soft: #f5d6e2;
+      --pink-pale: #f9eaf0;
+      --cream: #fbf7f4;
+      --card: #ffffff;
+      --ink: #3e252f;
+      --muted: #826470;
+      --border: #edd7e0;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: 'Tajawal', Tahoma, Arial, sans-serif;
+    }
+
+    header {
+      background: var(--burgundy);
+      color: #fff;
+      padding: 12px 18px;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      box-shadow: 0 3px 12px rgba(95, 31, 55, 0.18);
+    }
+
+    .nav-wrap {
+      max-width: 1120px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .cart-pill {
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      color: #fff;
+      border-radius: 20px;
+      padding: 6px 13px;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 13.5px;
+    }
+
+    .nav-links a {
+      color: rgba(255, 255, 255, 0.9);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    .brand-box {
+      text-align: left;
+      line-height: 1.15;
+    }
+
+    .brand-box strong {
+      font-size: 19px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      display: block;
+    }
+
+    .brand-box small {
+      font-size: 11px;
+      color: #f3cfe0;
+    }
+
+    main {
+      max-width: 1120px;
+      margin: auto;
+      padding: 16px;
+    }
+
+    .hero {
+      background: #f5ecee;
+      border: 1px solid #ead8dd;
+      border-radius: 20px;
+      padding: 24px;
+      display: grid;
+      grid-template-columns: 0.92fr 1.08fr;
+      gap: 24px;
+      align-items: center;
+      margin-bottom: 28px;
+    }
+
+    .hero-card {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #c795ab 0%, #8c3d59 55%, #66243d 100%);
+      display: grid;
+      place-items: center;
+      padding: 14px;
+      overflow: hidden;
+      box-shadow: 0 10px 24px rgba(102, 36, 61, 0.22);
+    }
+
+    .hero-content {
+      text-align: right;
+    }
+
+    .hero-kicker {
+      color: var(--burgundy);
+      font-size: 12.5px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .hero-content h1 {
+      color: var(--burgundy);
+      font-size: clamp(24px, 3.6vw, 36px);
+      line-height: 1.35;
+      margin: 0 0 10px;
+      font-weight: 800;
+    }
+
+    .hero-content p {
+      color: #6b4f5a;
+      font-size: 13.5px;
+      line-height: 1.75;
+      margin: 0 0 16px;
+      max-width: 440px;
+    }
+
+    .cta-btn {
+      background: var(--burgundy);
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      padding: 9px 22px;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    .cta-btn:hover {
+      background: var(--burgundy-dark);
+    }
+
+    .sec-title {
+      text-align: center;
+      color: var(--burgundy);
+      font-size: 20px;
+      font-weight: 800;
+      margin: 0 0 4px;
+    }
+
+    .sec-sub {
+      text-align: center;
+      color: var(--muted);
+      font-size: 12.5px;
+      margin: 0 0 18px;
+    }
+
+    .cats-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+
+    .cat-card {
+      background: #fff;
+      border: 1px solid #ead8df;
+      border-radius: 14px;
+      padding: 16px 10px;
+      text-align: center;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .cat-card:hover, .cat-card.active {
+      border-color: var(--burgundy);
+      background: #fdf4f7;
+    }
+
+    .cat-icon {
+      font-size: 22px;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .cat-name {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #4a2c38;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .prod-card {
+      background: #fff;
+      border: 1px solid #ead8df;
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .prod-thumb {
+      height: 128px;
+      background: #f6e7ed;
+      display: grid;
+      place-items: center;
+      font-size: 36px;
+    }
+
+    .prod-body {
+      padding: 14px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .prod-body h3 {
+      margin: 0 0 6px;
+      font-size: 14px;
+      font-weight: 800;
+      color: #3c222c;
+    }
+
+    .prod-body p {
+      margin: 0 0 10px;
+      font-size: 11.5px;
+      line-height: 1.65;
+      color: var(--muted);
+      flex: 1;
+    }
+
+    .prod-price {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--burgundy);
+      margin-bottom: 10px;
+    }
+
+    .add-btn {
+      width: 100%;
+      background: var(--burgundy);
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      padding: 7px 12px;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .add-btn:hover {
+      background: var(--burgundy-dark);
+    }
+
+    .about-box {
+      background: #f5e6ec;
+      border: 1px solid #ead0da;
+      border-radius: 18px;
+      padding: 22px 18px;
+      text-align: center;
+      margin-bottom: 26px;
+    }
+
+    .about-box h2 {
+      margin: 0 0 6px;
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--burgundy);
+    }
+
+    .about-box p {
+      margin: 0;
+      font-size: 12.5px;
+      color: #6f505c;
+    }
+
+    footer {
+      background: var(--burgundy);
+      color: #fff;
+      text-align: center;
+      padding: 18px 14px;
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    footer strong {
+      font-size: 13.5px;
+      display: block;
+    }
+
+    footer small {
+      opacity: 0.8;
+      font-size: 10.5px;
+    }
+
+    #overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+      display: none;
+      z-index: 40;
+    }
+
+    #drawer {
+      background: #fff;
+      width: min(380px, 90vw);
+      height: 100%;
+      padding: 18px;
+      margin-right: auto;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+
+    .drawer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+    }
+
+    .close-btn {
+      background: var(--pink-pale);
+      color: var(--burgundy);
+      border: none;
+      border-radius: 14px;
+      padding: 5px 11px;
+      font-family: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 9px 0;
+      border-bottom: 1px solid #f2e6eb;
+      font-size: 13px;
+    }
+
+    .del-btn {
+      background: none;
+      border: none;
+      color: var(--burgundy);
+      font-family: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .checkout-btn {
+      margin-top: auto;
+      width: 100%;
+      background: var(--burgundy);
+      color: #fff;
+      border: none;
+      border-radius: 20px;
+      padding: 11px;
+      font-family: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    @media (max-width: 820px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 18px;
+      }
+      .hero-content {
+        text-align: center;
+      }
+      .hero-content p {
+        margin-inline: auto;
+      }
+      .cats-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav-links {
+        gap: 10px;
+        font-size: 12px;
+      }
+      .cats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <button class="cart-pill" onclick="openCart()">🛍️ السلة (<span id="cart-count">0</span>)</button>
+    <nav class="nav-links">
+      <a href="#cats">الأقسام</a>
+      <a href="#products">منتجاتنا</a>
+      <a href="#about">عن حلوم</a>
+    </nav>
+    <div class="brand-box">
+      <strong>HLOOM</strong>
+      <small>متجر حلوم</small>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-card">
+      <img src="icon-512.png" alt="HLOOM متجر حلوم" style="width:100%;height:100%;object-fit:cover;border-radius:16px;display:block;">
+    </div>
+    <div class="hero-content">
+      <span class="hero-kicker">مرحباً بكِ في عالم حلوم 🌷</span>
+      <h1>جمالكِ، صحتكِ،<br>وأناقتكِ</h1>
+      <p>مساحة صغيرة لكل الأشياء التي تحبينها: عناية، جمال، منتجات طبيعية، وأزياء تضيف لمسة جميلة ليومكِ.</p>
+      <a href="#products" class="cta-btn">اكتشفي منتجاتنا</a>
+    </div>
+  </section>
+
+  <section id="cats">
+    <h2 class="sec-title">تسوّقي حسب القسم</h2>
+    <p class="sec-sub">اختاري ما يناسب لحظات اهتمامكِ بنفسكِ 💗</p>
+    <div class="cats-grid">
+      <div class="cat-card" onclick="filterByCat('البشرة', this)">
+        <span class="cat-icon">🧴</span>
+        <span class="cat-name">العناية بالبشرة</span>
+      </div>
+      <div class="cat-card" onclick="filterByCat('طبيعي', this)">
+        <span class="cat-icon">🌿</span>
+        <span class="cat-name">طبيعي وعضوي</span>
+      </div>
+      <div class="cat-card" onclick="filterByCat('الصحة', this)">
+        <span class="cat-icon">🌸</span>
+        <span class="cat-name">الصحة والعافية</span>
+      </div>
+      <div class="cat-card" onclick="filterByCat('الأزياء', this)">
+        <span class="cat-icon">👗</span>
+        <span class="cat-name">الأزياء والملابس</span>
+      </div>
+      <div class="cat-card" onclick="filterByCat('الهدايا', this)">
+        <span class="cat-icon">🎀</span>
+        <span class="cat-name">الهدايا والدلال</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="products">
+    <h2 class="sec-title">اختيارات حلوم</h2>
+    <p class="sec-sub">نماذج أولية للمنتجات — يمكن استبدالها بمنتجاتكِ وأسعاركِ الفعلية</p>
+    <div class="products-grid" id="products-list">
+      <div class="prod-card" data-cat="الهدايا">
+        <div class="prod-thumb">🎁</div>
+        <div class="prod-body">
+          <h3>بوكس حلوم للدلال</h3>
+          <p>مجموعة هدايا وعناية يمكن تخصيص محتوياتها.</p>
+          <div class="prod-price">السعر: يحدد لاحقاً</div>
+          <button class="add-btn" onclick="addItem('بوكس حلوم للدلال')">أضيفي إلى السلة</button>
+        </div>
+      </div>
+
+      <div class="prod-card" data-cat="الأزياء">
+        <div class="prod-thumb">👗</div>
+        <div class="prod-body">
+          <h3>إطلالة أنيقة</h3>
+          <p>ملابس نسائية مع خيارات المقاس واللون عند إضافة المنتج.</p>
+          <div class="prod-price">السعر: يحدد لاحقاً</div>
+          <button class="add-btn" onclick="addItem('إطلالة أنيقة')">أضيفي إلى السلة</button>
+        </div>
+      </div>
+
+      <div class="prod-card" data-cat="طبيعي">
+        <div class="prod-thumb">🌿</div>
+        <div class="prod-body">
+          <h3>منتج طبيعي</h3>
+          <p>منتجات مختارة بعناية مع توضيح وصفها ومكوناتها.</p>
+          <div class="prod-price">السعر: يحدد لاحقاً</div>
+          <button class="add-btn" onclick="addItem('منتج طبيعي')">أضيفي إلى السلة</button>
+        </div>
+      </div>
+
+      <div class="prod-card" data-cat="البشرة">
+        <div class="prod-thumb">🧴</div>
+        <div class="prod-body">
+          <h3>سيروم عناية بالبشرة</h3>
+          <p>نموذج منتج للعناية اليومية. أضيفي الوصف والمكونات المخصصة.</p>
+          <div class="prod-price">السعر: يحدد لاحقاً</div>
+          <button class="add-btn" onclick="addItem('سيروم عناية بالبشرة')">أضيفي إلى السلة</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="about-box">
+    <h2>حلوم.. لأنكِ تستحقين الدلال 💕</h2>
+    <p>نهتم بالتفاصيل التي تجعل تجربة التسوّق بسيطة، لطيفة، وقريبة منكِ.</p>
+  </section>
+</main>
+
+<footer>
+  <strong>HLOOM | متجر حلوم</strong>
+  جمالكِ، صحتكِ، وأناقتكِ<br>
+  <small>هذه نسخة تصميم أولية وليست مرتبطة بعد بقاعدة بيانات أو نظام دفع أو إدارة طلبات.</small>
+</footer>
+
+<div id="overlay" onclick="if(event.target.id==='overlay')closeCart()">
+  <div id="drawer">
+    <div class="drawer-top">
+      <strong style="color:var(--burgundy);font-size:16px">سلة حلوم 🛍️</strong>
+      <button class="close-btn" onclick="closeCart()">إغلاق ✕</button>
+    </div>
+    <div id="cart-items">السلة فارغة.</div>
+    <button class="checkout-btn" onclick="alert('سيتم تفعيل إتمام الطلب في الخطوات القادمة.')">متابعة الطلب</button>
+  </div>
+</div>
+
+<script>
+  let cart = [];
+  let activeCat = null;
+
+  function addItem(name) {
+    cart.push(name);
+    document.getElementById('cart-count').textContent = cart.length;
+    renderCart();
+  }
+
+  function removeItem(idx) {
+    cart.splice(idx, 1);
+    document.getElementById('cart-count').textContent = cart.length;
+    renderCart();
+  }
+
+  function renderCart() {
+    const el = document.getElementById('cart-items');
+    if (!cart.length) {
+      el.innerHTML = 'السلة فارغة.';
+      return;
+    }
+    el.innerHTML = cart.map((item, i) =>
+      `<div class="cart-item"><span>${item}</span><button class="del-btn" onclick="removeItem(${i})">حذف</button></div>`
+    ).join('');
+  }
+
+  function openCart() {
+    document.getElementById('overlay').style.display = 'block';
+    renderCart();
+  }
+
+  function closeCart() {
+    document.getElementById('overlay').style.display = 'none';
+  }
+
+  function filterByCat(cat, cardEl) {
+    const cards = document.querySelectorAll('.cat-card');
+    if (activeCat === cat) {
+      activeCat = null;
+      cards.forEach(c => c.classList.remove('active'));
+      document.querySelectorAll('.prod-card').forEach(p => p.style.display = '');
+      return;
+    }
+    activeCat = cat;
+    cards.forEach(c => c.classList.remove('active'));
+    cardEl.classList.add('active');
+    document.querySelectorAll('.prod-card').forEach(p => {
+      p.style.display = (p.dataset.cat === cat) ? '' : 'none';
+    });
+  }
+
+  if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+    navigator.serviceWorker.register('./sw.js').catch(() => {});
+  }
+</script>
+</body>
+</html>
